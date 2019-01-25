@@ -1,21 +1,41 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import {StyleSheet, Text, View, AppRegistry, ScrollView} from 'react-native';
 
-export default class App extends React.Component {
+class Event extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+      <View style={{alignItems: 'center'}}>
+        <Text> To Do: {this.props.name} </Text>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default class EventsList extends Component {
+  render() {
+    return (
+      <ScrollView>
+        <Event name= 'Study for Science Exam'/>
+        <Event name= 'Study for Computer Science Exam'/>
+        <Event name= 'Study for Computer Engineering Exam'/>
+      </ScrollView>
+    );
+  }
+}
+
+// const scrollStyles = StyleSheet.create({
+//   contentContainer: {
+//     paddingVertical: 20
+//   }
+// });
+//
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+// });
+
+AppRegistry.registerComponent('ExamTrack', () => EventsList);
