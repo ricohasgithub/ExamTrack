@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {StyleSheet, Text, View, AppRegistry, ScrollView, Image} from 'react-native';
+import { AppRegistry, StyleSheet, Text, View, TouchableOpacity, ScrollView, Image } from 'react-native';
 
 export const CHECK = require('./icons/check.png');
 export const NOTCHECK = require('./icons/notcheck.png');
@@ -11,20 +11,36 @@ class Event extends Component {
       this.state = {complete: false};
   }
 
+  onPress = () => {
+    this.setState({
+      complete: true
+    })
+  }
+
   render() {
 
     if (this.state.complete) {
       return(
-      <View style={EventContainerStyles.item}>
-        <Image style={{width: 25, height: 25}} source={CHECK} />
-        <Text> To Do: {this.props.name} </Text>
-      </View>);
+       <TouchableOpacity
+         style={EventContainerStyles.button}
+         onPress={this.onPress}
+       >
+        <View style={EventContainerStyles.item}>
+          <Image style={{width: 25, height: 25}} source={CHECK} />
+          <Text> To Do: {this.props.name} </Text>
+        </View>
+        </TouchableOpacity>);
     } else {
       return(
-      <View style={EventContainerStyles.item}>
-        <Image style={{width: 25, height: 25}} source={NOTCHECK} />
-        <Text> To Do: {this.props.name} </Text>
-      </View>);
+      <TouchableOpacity
+          style={EventContainerStyles.button}
+          onPress={this.onPress}
+      >
+        <View style={EventContainerStyles.item}>
+          <Image style={{width: 25, height: 25}} source={NOTCHECK} />
+          <Text> To Do: {this.props.name} </Text>
+        </View>
+      </TouchableOpacity>);
     }
   }
 
@@ -62,16 +78,12 @@ const EventContainerStyles = StyleSheet.create({
         borderColor: '#000000',
         borderWidth: 2,
         backgroundColor: '#ffffff'
-     }
+     },
+  button: {
+       // alignItems: 'center',
+       backgroundColor: '#DDDDDD',
+       padding: 10
+    }
 });
-//
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
 
 AppRegistry.registerComponent('ExamTrack', () => EventsList);
