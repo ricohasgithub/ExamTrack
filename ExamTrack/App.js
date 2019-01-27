@@ -1,50 +1,8 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View, TouchableOpacity, ScrollView, Image } from 'react-native';
 
-export const CHECK = require('./icons/check.png');
-export const NOTCHECK = require('./icons/notcheck.png');
-
-class Event extends Component {
-
-  constructor(props) {
-      super(props);
-      this.state = {complete: false};
-  }
-
-  onPress = () => {
-    this.setState({
-      complete: true
-    })
-  }
-
-  render() {
-
-    if (this.state.complete) {
-      return(
-       <TouchableOpacity
-         style={EventContainerStyles.button}
-         onPress={this.onPress}
-       >
-        <View style={EventContainerStyles.item}>
-          <Image style={{width: 25, height: 25}} source={CHECK} />
-          <Text> To Do: {this.props.name} </Text>
-        </View>
-        </TouchableOpacity>);
-    } else {
-      return(
-      <TouchableOpacity
-          style={EventContainerStyles.button}
-          onPress={this.onPress}
-      >
-        <View style={EventContainerStyles.item}>
-          <Image style={{width: 25, height: 25}} source={NOTCHECK} />
-          <Text> To Do: {this.props.name} </Text>
-        </View>
-      </TouchableOpacity>);
-    }
-  }
-
-}
+// Custom event Component
+import Event from './Event.js';
 
 class Title extends Component {
   render() {
@@ -60,9 +18,18 @@ export default class EventsList extends Component {
   render() {
     return (
       <ScrollView>
-        <Event name= 'Study for Science Exam'/>
-        <Event name= 'Study for Computer Science Exam'/>
-        <Event name= 'Study for Computer Engineering Exam'/>
+        <Event
+          buttonStyles = {EventContainerStyles.button}
+          containerStyles = {EventContainerStyles.item}
+          content = {'Study for Science Exam'}/>
+        <Event
+          buttonStyles = {EventContainerStyles.button}
+          containerStyles = {EventContainerStyles.item}
+          content = {'Study for Computer Science Exam'}/>
+        <Event
+          buttonStyles = {EventContainerStyles.button}
+          containerStyles = {EventContainerStyles.item}
+          content = {'Study for Computer Engineering Exam'}/>
       </ScrollView>
     );
   }
@@ -81,7 +48,7 @@ const EventContainerStyles = StyleSheet.create({
      },
   button: {
        // alignItems: 'center',
-       backgroundColor: '#DDDDDD',
+       backgroundColor: '#ffffff',
        padding: 10
     }
 });
